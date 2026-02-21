@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Video Stylization</title>
+    <!-- Importing a sleek Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Using HLS.js to play the HLS streams -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo-container">
+                <div class="cube-animation"></div>
+                <h1>Style<span class="highlight">Cast</span></h1>
+            </div>
+            <p class="subtitle">Next-gen AI Video Processing</p>
+        </header>
+
+        <!-- Main Content Grid -->
+        <main class="main-content">
+            <!-- Upload Section (Left Panel) -->
+            <section class="upload-section glass-panel">
+                <div class="panel-header">
+                    <h2>Upload Video</h2>
+                </div>
+                
+                <form id="uploadForm" class="upload-form">
+                    <div class="input-group">
+                        <label for="videoTitle">Video Title</label>
+                        <input type="text" id="videoTitle" placeholder="e.g. My Awesome Clip" required />
+                    </div>
+
+                    <div class="input-group">
+                        <label for="videoFile">Select Media File</label>
+                        <div class="file-drop-area" id="fileDropArea">
+                            <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                            <span class="file-message">Drag & drop or click to browse</span>
+                            <input type="file" id="videoFile" accept="video/mp4,video/x-m4v,video/*" class="file-input" required />
+                        </div>
+                        <div id="fileDetail" class="file-detail hidden"></div>
+                    </div>
+
+                    <button type="submit" id="uploadBtn" class="primary-btn">
+                        <span class="btn-text">Start Processing</span>
+                        <div class="loader hidden"></div>
+                    </button>
+                    <div id="uploadStatus" class="status-msg"></div>
+                </form>
+            </section>
+
+            <!-- Video Gallery Section (Right Panel) -->
+            <section class="gallery-section glass-panel">
+                <div class="panel-header">
+                    <h2>Video Library</h2>
+                    <button id="refreshBtn" class="icon-btn" title="Refresh List">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="23 4 23 10 17 10"></polyline>
+                            <polyline points="1 20 1 14 7 14"></polyline>
+                            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div id="videoList" class="video-grid">
+                    <!-- Dynamic Video Items Will Render Here -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Video Player Modal Overlay -->
+        <div id="videoModal" class="modal-overlay hidden">
+            <div class="modal-content glass-panel">
+                <button id="closeModalBtn" class="close-btn">&times;</button>
+                <div class="player-wrapper">
+                    <video id="hlsPlayer" controls class="hls-video"></video>
+                </div>
+                <h3 id="modalVideoTitle" class="modal-title">Video Title</h3>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

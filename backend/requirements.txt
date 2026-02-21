@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+sqlmodel
+sqlalchemy
+psycopg2-binary
+boto3
+python-dotenv
+redis
+celery
+arq
+httpx
+cryptography
+python-multipart
